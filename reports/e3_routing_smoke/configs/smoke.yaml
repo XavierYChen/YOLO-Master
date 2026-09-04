@@ -1,0 +1,20 @@
+schema_version: e3.admission_config.v1
+scope: MoE / MoT / Latent routing admission smoke
+initialization: random_from_yaml
+data: coco8.yaml
+imgsz: 320
+batch_size: 1
+seed: 0
+device: auto
+warmup: 2
+iterations: 10
+models:
+  moe: ultralytics/cfg/models/26/yolo26-master-n.yaml
+  mot: ultralytics/cfg/models/26/yolo26-master-mot-n.yaml
+  latent: ultralytics/cfg/models/26/yolo26-master-latent-n.yaml
+admission:
+  require_all_families: true
+  require_matching_routed_layer: true
+  require_finite_normalized_usage: true
+  require_entropy_and_gini_in_unit_interval: true
+  collapse_is_failure: false
