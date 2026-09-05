@@ -1,5 +1,12 @@
 # E3 Routing Admission Smoke
 
+> **当前状态：采集原型，待修复与重新验证。**
+>
+> 已有 RTX 3060 运行证明三个模型能 forward 并生成文件，但脚本的 `passed` 仅表示内部检查通过，不代表导师或官方验收通过。
+> 已发现：当前 `expert_usage` 使用平均软路由概率，不能等同于 top-k 实际激活频率；MoE/MoT 的 aux 配置可能因读取 router 子模块而误标为未配置。修复时须分别记录软概率、实际选择频率和混合权重，并追溯到所属专家模块。
+> 用户提供的其他参与者设计中，“MoT 单族”位于该参与者的执行口径列，不能据此认定官方禁止三族 Smoke。阶段归属须以原始任务书或导师通知为准。
+> 当前运行不能证明 P0 正式验收或 P1 训练减速 <10%。保留原始结果用于对照，完成语义测试和实际设备复跑后再更新验收状态。
+
 This report package implements one comparable admission smoke across the **MoE**, **MoT**, and **Latent** families, plus measured routing-instrumentation overhead.
 
 > Scope: architecture and observability only. The three YAML models are randomly initialized. This run proves that each model builds, forwards one real image, exposes its intended router, produces normalized expert usage, and can be inspected. It does **not** claim detection accuracy or trained expert specialization.
@@ -82,4 +89,4 @@ The JSON reports median, p95, min, max, delta, and ratio. This is deliberately a
 | 风险与降级 | `LIMITATIONS.md` | random-init and timing caveats documented |
 | 代码/方案链接 | branch/PR URL | fill after pushing the branch |
 
-Do not mark the three-family E3 admission as complete until `summary.json` says `passed` on the target machine and the generated evidence has been pushed.
+Do not mark formal admission complete based on `summary.json` alone. Resolve the metric and aux-state issues above, validate against the original task requirements, rerun on the target device, and review the evidence.
