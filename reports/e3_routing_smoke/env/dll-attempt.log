@@ -1,0 +1,12 @@
+Started: 2026-09-05T06:49:39.979672+00:00
+Traceback (most recent call last):
+  File "D:\AI\YOLO-Master\scripts\e3_routing_smoke.py", line 718, in main
+    result = run(args)
+             ^^^^^^^^^
+  File "D:\AI\YOLO-Master\scripts\e3_routing_smoke.py", line 590, in run
+    import torch
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\__init__.py", line 285, in <module>
+    _load_dll_libraries()
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\__init__.py", line 268, in _load_dll_libraries
+    raise err
+OSError: [WinError 1455] 页面文件太小，无法完成操作。 Error loading "D:\AI\envs\yolo_master\Lib\site-packages\torch\lib\caffe2_nvrtc.dll" or one of its dependencies.

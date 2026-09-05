@@ -1,0 +1,9 @@
+Started: 2026-09-05T07:00:29.339070+00:00
+E3 routing smoke | device=cpu | image=D:\AI\datasets\coco8\images\val\000000000036.jpg
+[moe] building and capturing routing...
+[moe] passed
+[mot] building and capturing routing...
+[mot] passed
+[latent] building and capturing routing...
+[latent] passed
+Result: passed | evidence=D:\AI\YOLO-Master\reports\e3_routing_smoke\results\verified-cpu-v2-20260905

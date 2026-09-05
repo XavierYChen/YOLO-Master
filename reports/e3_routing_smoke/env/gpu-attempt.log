@@ -1,0 +1,86 @@
+Started: 2026-09-05T06:49:16.860527+00:00
+E3 routing smoke | device=cuda:0 | image=D:\AI\datasets\coco8\images\val\000000000036.jpg
+[moe] building and capturing routing...
+Traceback (most recent call last):
+  File "D:\AI\YOLO-Master\scripts\e3_routing_smoke.py", line 605, in run
+    profile = _profile_run(family, args, torch, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\scripts\e3_routing_smoke.py", line 430, in _profile_run
+    natural = forward()
+              ^^^^^^^^^
+  File "D:\AI\YOLO-Master\scripts\e3_routing_smoke.py", line 428, in forward
+    return model(batch)
+           ^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\tasks.py", line 163, in forward
+    return self.predict(x, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\tasks.py", line 180, in predict
+    return self._predict_once(x, profile, visualize, embed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\tasks.py", line 210, in _predict_once
+    x = self._apply_checkpointing(m, x) if use_gc else m(x)
+                                                       ^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\modules\block.py", line 1875, in forward
+    y.extend(m(y[-1]) for m in self.m)
+  File "D:\AI\YOLO-Master\ultralytics\nn\modules\block.py", line 1875, in <genexpr>
+    y.extend(m(y[-1]) for m in self.m)
+             ^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\container.py", line 253, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\modules\moe\modules.py", line 1283, in forward
+    mlp_out = self.mlp(x)
+              ^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\modules\moe\modules.py", line 1108, in forward
+    routing_weights, routing_indices, loss_dict = self.routing(x, top_k=adaptive_top_k)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\envs\yolo_master\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\modules\moe\routers.py", line 304, in forward
+    return self._process_logits(global_logits, self.noise_std, self.training, top_k=top_k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\YOLO-Master\ultralytics\nn\modules\moe\routers.py", line 236, in _process_logits
+    sum_vals = topk_vals.sum(dim=1, keepdim=True).clamp_min(1e-6)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[moe] failed
+[mot] building and capturing routing...

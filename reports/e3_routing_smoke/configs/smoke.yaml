@@ -1,0 +1,7 @@
+﻿data: coco8.yaml
+imgsz: 320
+seed: 0
+device: cpu
+warmup: 3
+iterations: 20
+families: [moe, mot, latent]

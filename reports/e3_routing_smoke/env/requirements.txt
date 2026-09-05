@@ -1,0 +1,9 @@
+# Install the locked YOLO-Master checkout with: python -m pip install -e .
+# Install a suitable PyTorch build for the machine separately.
+numpy
+matplotlib
+pillow
+pyyaml
+pytest
+ruff
+codespell
