@@ -9,11 +9,11 @@ Owner：@XavierYChen。腾讯基线：`246e79cfe418cfd90f4738bace56b02245dc38f8`
 
 ## 最新实测图
 
-![MoE、MoT、Latent 路由总览，格内和条形旁标出三位小数](results/verified-cpu-v4-annotated-20260905/routing_snapshot.png)
+![MoE、MoT、Latent 路由总览，格内和条形旁标出三位小数](results/verified-cpu-v5-annotated-20260906/routing_snapshot.png)
 
-分族高清图：[MoE](results/verified-cpu-v4-annotated-20260905/moe_expert_usage.png) ·
-[MoT](results/verified-cpu-v4-annotated-20260905/mot_expert_usage.png) ·
-[Latent](results/verified-cpu-v4-annotated-20260905/latent_expert_usage.png)
+分族高清图：[MoE](results/verified-cpu-v5-annotated-20260906/moe_expert_usage.png) ·
+[MoT](results/verified-cpu-v5-annotated-20260906/mot_expert_usage.png) ·
+[Latent](results/verified-cpu-v5-annotated-20260906/latent_expert_usage.png)
 
 图中 `0.000` 是本次记录经三位小数显示后的数值；完整精度保留在 JSON/JSONL。
 颜色范围按每个族实际范围设置，比较颜色深浅时只应在同一个面板及其色条内进行。
@@ -28,7 +28,7 @@ reports\e3_routing_smoke\run_smoke.cmd
 ```
 
 默认 CPU、320、seed=0、3 次预热和 20 对交替测量。本机调试时出现过 CUDA 分配失败及 Windows 分页文件不足，因此 CPU 是当前默认值。
-每次自动创建新的 `reports/e3_routing_smoke/results/run-时间/`，终端最后打印实际路径。仓库中已提交的最新版完整证据是 `results/verified-cpu-v4-annotated-20260905/`，其中四张 PNG 都带三位小数标注。
+每次自动创建新的 `reports/e3_routing_smoke/results/run-时间/`，终端最后打印实际路径。仓库中已提交的最新版完整证据是 `results/verified-cpu-v5-annotated-20260906/`，其中四张 PNG 都带三位小数标注。
 不要再拿旧 `results/summary.json` 判断本次结果。
 
 只测 MoT（便于理解单族结果）：
@@ -95,4 +95,3 @@ MoE 最终 top-k hook，MoT/Latent 原生 snapshot hook → 严格校验 → JSO
 旧三族脚本可能在路由内部卷积分数上做 softmax，把它标成专家负载；本版使用最终 top-k 输出或原生 snapshot，并明确语义。
 Workbuddy 方案的目录、JSONL 思路值得参考，但其中随机图片 fallback、未应用 seed、未移动模型设备、缺少完整日志及过早生成 manifest 等问题没有照搬。
 不追求与别人像素一致，也不把旧脚本日志追溯改写成本版证据。
-

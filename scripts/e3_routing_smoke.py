@@ -446,7 +446,7 @@ def _plot_semantics(family: str) -> str:
     return "Top-k selection share" if family == "moe" else "Mean mixture probability"
 
 
-def _annotate_heatmap(axis: Any, matrix: Any, vmax: float) -> None:
+def _annotate_heatmap(axis: Any, matrix: Any, image: Any) -> None:
     """Write compact values into valid heatmap cells with readable contrast."""
     import numpy as np
 
@@ -455,6 +455,8 @@ def _annotate_heatmap(axis: Any, matrix: Any, vmax: float) -> None:
         value = matrix[row, column]
         if np.isnan(value):
             continue
+        red, green, blue, _ = image.cmap(image.norm(value))
+        luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
         axis.text(
             column,
             row,
@@ -462,7 +464,7 @@ def _annotate_heatmap(axis: Any, matrix: Any, vmax: float) -> None:
             ha="center",
             va="center",
             fontsize=fontsize,
-            color="white" if value >= vmax * 0.55 else "#172033",
+            color="white" if luminance < 0.48 else "#172033",
         )
 
 
@@ -512,7 +514,7 @@ def _save_figure(profiles: list[dict[str, Any]], output: Path, *, seed: int, ima
         left.set_ylabel("Routed layer")
         left.set_yticks(range(len(layers)), [layer["layer_name"] for layer in layers])
         left.set_xticks(range(max_experts))
-        _annotate_heatmap(left, matrix, vmax)
+        _annotate_heatmap(left, matrix, image)
         figure.colorbar(image, ax=left, fraction=0.025, pad=0.02)
         positions = np.arange(len(layers))
         entropy_bars = right.barh(
@@ -549,7 +551,7 @@ def _save_figure(profiles: list[dict[str, Any]], output: Path, *, seed: int, ima
         axis.set_ylabel("Routed layer")
         semantics = _plot_semantics(profile["family"])
         axis.set_title(f"E3 {profile['family'].upper()} — {semantics}\nCOCO8 {image_name} • random init • seed {seed}")
-        _annotate_heatmap(axis, matrix, vmax)
+        _annotate_heatmap(axis, matrix, family_image)
         family_figure.colorbar(family_image, ax=axis, label=semantics)
         family_figure.tight_layout()
         family_figure.savefig(output / f"{profile['family']}_expert_usage.png", dpi=160, bbox_inches="tight")
@@ -763,4 +765,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

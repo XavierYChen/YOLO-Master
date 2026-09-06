@@ -1,0 +1,1168 @@
+{
+  "schema_version": "e3.routing_snapshot.v2",
+  "purpose": "architecture and instrumentation admission smoke",
+  "accuracy_claim": false,
+  "dataset": "coco8.yaml",
+  "input": {
+    "image": "000000000036.jpg",
+    "imgsz": 320
+  },
+  "seed": 0,
+  "profiles": [
+    {
+      "family": "moe",
+      "status": "passed",
+      "config": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
+      "initialization": "random",
+      "captured_routed_layers_total": 6,
+      "matching_layers": [
+        {
+          "layer_name": "model.4.m.0.0.mlp",
+          "module_type": "OptimizedMOEImproved",
+          "family": "moe",
+          "num_experts": 4,
+          "top_k": 2,
+          "expert_usage": [
+            0.0,
+            0.5,
+            0.0,
+            0.5
+          ],
+          "usage_semantics": "topk_selection_share",
+          "mean_router_probs": [
+            0.0,
+            0.5000014305114746,
+            0.0,
+            0.4999985098838806
+          ],
+          "mean_topk_weight": [
+            0.5000014305114746,
+            0.4999985098838806
+          ],
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.5,
+          "normalized_gini": 0.6666666666666666,
+          "dead_experts": [
+            0,
+            2
+          ],
+          "tensor_shape": [
+            1,
+            64,
+            40,
+            40
+          ],
+          "aux_loss": {
+            "status": "not_published_eval",
+            "observed": null,
+            "balance_loss_coeff": 1.0,
+            "router_z_loss_coeff": 1.0
+          },
+          "source": "router_topk_output",
+          "source_snapshot_keys": [
+            "expert_usage",
+            "mean_router_probs",
+            "mean_topk_weight",
+            "num_experts",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.4.m.0.1.mlp",
+          "module_type": "OptimizedMOEImproved",
+          "family": "moe",
+          "num_experts": 4,
+          "top_k": 2,
+          "expert_usage": [
+            0.0,
+            0.5,
+            0.0,
+            0.5
+          ],
+          "usage_semantics": "topk_selection_share",
+          "mean_router_probs": [
+            0.0,
+            0.5402601361274719,
+            0.0,
+            0.4597398042678833
+          ],
+          "mean_topk_weight": [
+            0.5402601361274719,
+            0.4597398042678833
+          ],
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.5,
+          "normalized_gini": 0.6666666666666666,
+          "dead_experts": [
+            0,
+            2
+          ],
+          "tensor_shape": [
+            1,
+            64,
+            40,
+            40
+          ],
+          "aux_loss": {
+            "status": "not_published_eval",
+            "observed": null,
+            "balance_loss_coeff": 1.0,
+            "router_z_loss_coeff": 1.0
+          },
+          "source": "router_topk_output",
+          "source_snapshot_keys": [
+            "expert_usage",
+            "mean_router_probs",
+            "mean_topk_weight",
+            "num_experts",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.6.m.0.0.mlp",
+          "module_type": "OptimizedMOEImproved",
+          "family": "moe",
+          "num_experts": 8,
+          "top_k": 2,
+          "expert_usage": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.5
+          ],
+          "usage_semantics": "topk_selection_share",
+          "mean_router_probs": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.49969592690467834,
+            0.5003040432929993
+          ],
+          "mean_topk_weight": [
+            0.5003040432929993,
+            0.49969592690467834
+          ],
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.33333333333333337,
+          "normalized_gini": 0.8571428571428571,
+          "dead_experts": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "tensor_shape": [
+            1,
+            64,
+            20,
+            20
+          ],
+          "aux_loss": {
+            "status": "not_published_eval",
+            "observed": null,
+            "balance_loss_coeff": 1.0,
+            "router_z_loss_coeff": 1.0
+          },
+          "source": "router_topk_output",
+          "source_snapshot_keys": [
+            "expert_usage",
+            "mean_router_probs",
+            "mean_topk_weight",
+            "num_experts",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.6.m.0.1.mlp",
+          "module_type": "OptimizedMOEImproved",
+          "family": "moe",
+          "num_experts": 8,
+          "top_k": 2,
+          "expert_usage": [
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0
+          ],
+          "usage_semantics": "topk_selection_share",
+          "mean_router_probs": [
+            0.0,
+            0.0,
+            0.5044910311698914,
+            0.0,
+            0.0,
+            0.49550893902778625,
+            0.0,
+            0.0
+          ],
+          "mean_topk_weight": [
+            0.5044910311698914,
+            0.49550893902778625
+          ],
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.33333333333333337,
+          "normalized_gini": 0.8571428571428571,
+          "dead_experts": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7
+          ],
+          "tensor_shape": [
+            1,
+            64,
+            20,
+            20
+          ],
+          "aux_loss": {
+            "status": "not_published_eval",
+            "observed": null,
+            "balance_loss_coeff": 1.0,
+            "router_z_loss_coeff": 1.0
+          },
+          "source": "router_topk_output",
+          "source_snapshot_keys": [
+            "expert_usage",
+            "mean_router_probs",
+            "mean_topk_weight",
+            "num_experts",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.8.m.0.0.mlp",
+          "module_type": "OptimizedMOEImproved",
+          "family": "moe",
+          "num_experts": 16,
+          "top_k": 2,
+          "expert_usage": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0
+          ],
+          "usage_semantics": "topk_selection_share",
+          "mean_router_probs": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5000321865081787,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.4999678134918213,
+            0.0
+          ],
+          "mean_topk_weight": [
+            0.5000321865081787,
+            0.4999678134918213
+          ],
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.25,
+          "normalized_gini": 0.9333333333333333,
+          "dead_experts": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15
+          ],
+          "tensor_shape": [
+            1,
+            128,
+            10,
+            10
+          ],
+          "aux_loss": {
+            "status": "not_published_eval",
+            "observed": null,
+            "balance_loss_coeff": 1.0,
+            "router_z_loss_coeff": 1.0
+          },
+          "source": "router_topk_output",
+          "source_snapshot_keys": [
+            "expert_usage",
+            "mean_router_probs",
+            "mean_topk_weight",
+            "num_experts",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.8.m.0.1.mlp",
+          "module_type": "OptimizedMOEImproved",
+          "family": "moe",
+          "num_experts": 16,
+          "top_k": 2,
+          "expert_usage": [
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "usage_semantics": "topk_selection_share",
+          "mean_router_probs": [
+            0.0,
+            0.4938899278640747,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.5061100125312805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mean_topk_weight": [
+            0.5061100125312805,
+            0.4938899278640747
+          ],
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.25,
+          "normalized_gini": 0.9333333333333333,
+          "dead_experts": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "tensor_shape": [
+            1,
+            128,
+            10,
+            10
+          ],
+          "aux_loss": {
+            "status": "not_published_eval",
+            "observed": null,
+            "balance_loss_coeff": 1.0,
+            "router_z_loss_coeff": 1.0
+          },
+          "source": "router_topk_output",
+          "source_snapshot_keys": [
+            "expert_usage",
+            "mean_router_probs",
+            "mean_topk_weight",
+            "num_experts",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        }
+      ],
+      "validation_errors": [],
+      "output_parity": {
+        "passed": true,
+        "rtol": 1e-05,
+        "atol": 1e-06
+      },
+      "hooks_removed": true,
+      "overhead": {
+        "method": "alternating_paired_eval_forward",
+        "warmup": 3,
+        "iterations": 20,
+        "baseline": {
+          "median_ms": 92.83415000004425,
+          "p95_ms": 102.08110000007764,
+          "min_ms": 84.66479999992771,
+          "max_ms": 127.4834999999257,
+          "samples_ms": [
+            96.08140000000276,
+            87.68159999999625,
+            95.10309999996025,
+            84.66479999992771,
+            87.56210000001374,
+            90.76660000005177,
+            87.67020000004777,
+            94.5833999999195,
+            90.74620000001232,
+            102.08110000007764,
+            98.09460000019499,
+            92.17680000006112,
+            95.60290000013083,
+            127.4834999999257,
+            95.82799999998315,
+            90.39820000020882,
+            93.49090000000615,
+            92.17740000008234,
+            91.41380000005483,
+            97.00420000012855
+          ]
+        },
+        "instrumented": {
+          "median_ms": 93.84860000011486,
+          "p95_ms": 99.18249999986983,
+          "min_ms": 88.51400000003196,
+          "max_ms": 106.73359999987042,
+          "samples_ms": [
+            90.58660000005148,
+            91.29380000013043,
+            106.73359999987042,
+            88.51400000003196,
+            91.91550000014104,
+            91.87360000009903,
+            92.84419999994498,
+            93.22950000000674,
+            91.31619999993745,
+            97.00569999995423,
+            95.22500000002765,
+            98.27679999989414,
+            96.38919999997597,
+            97.52439999988383,
+            99.18249999986983,
+            94.49180000001434,
+            93.98740000006,
+            93.70980000016971,
+            94.82739999998557,
+            92.14940000015304
+          ]
+        },
+        "median_delta_ms": 1.0144500000706103,
+        "median_ratio": 1.0109275519845888,
+        "scope": "temporary hooks + eval forward + CPU records + validation; excludes disk/plots",
+        "note": "Diagnostic observation cost; native snapshot publication remains on in both arms. Not P1 training."
+      }
+    },
+    {
+      "family": "mot",
+      "status": "passed",
+      "config": "ultralytics/cfg/models/26/yolo26-master-mot-n.yaml",
+      "initialization": "random",
+      "captured_routed_layers_total": 4,
+      "matching_layers": [
+        {
+          "layer_name": "model.13.m.0",
+          "module_type": "MoTBlock",
+          "family": "mot",
+          "num_experts": 3,
+          "top_k": 2,
+          "expert_usage": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.6309297535714574,
+          "normalized_gini": 0.5000000000000002,
+          "dead_experts": [
+            2
+          ],
+          "tensor_shape": [
+            1,
+            64,
+            20,
+            20
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.01
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "aux_loss",
+            "dispatch",
+            "expert_usage",
+            "finite_diagnostics",
+            "mean_router_probs",
+            "num_experts",
+            "scene_aware",
+            "scene_aware_applied",
+            "scene_bias",
+            "scene_bypass_reason",
+            "scene_consistency_loss",
+            "scene_inference_mode",
+            "scene_stats",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.16.m.0",
+          "module_type": "MoTBlock",
+          "family": "mot",
+          "num_experts": 3,
+          "top_k": 2,
+          "expert_usage": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.6309297535714574,
+          "normalized_gini": 0.5000000000000002,
+          "dead_experts": [
+            2
+          ],
+          "tensor_shape": [
+            1,
+            32,
+            40,
+            40
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.01
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "aux_loss",
+            "dispatch",
+            "expert_usage",
+            "finite_diagnostics",
+            "mean_router_probs",
+            "num_experts",
+            "scene_aware",
+            "scene_aware_applied",
+            "scene_bias",
+            "scene_bypass_reason",
+            "scene_consistency_loss",
+            "scene_inference_mode",
+            "scene_stats",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.19.m.0",
+          "module_type": "MoTBlock",
+          "family": "mot",
+          "num_experts": 3,
+          "top_k": 2,
+          "expert_usage": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 0.5,
+          "normalized_entropy": 0.6309297535714574,
+          "normalized_gini": 0.5000000000000002,
+          "dead_experts": [
+            2
+          ],
+          "tensor_shape": [
+            1,
+            64,
+            20,
+            20
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.01
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "aux_loss",
+            "dispatch",
+            "expert_usage",
+            "finite_diagnostics",
+            "mean_router_probs",
+            "num_experts",
+            "scene_aware",
+            "scene_aware_applied",
+            "scene_bias",
+            "scene_bypass_reason",
+            "scene_consistency_loss",
+            "scene_inference_mode",
+            "scene_stats",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        },
+        {
+          "layer_name": "model.22.m.0",
+          "module_type": "MoTBlock",
+          "family": "mot",
+          "num_experts": 3,
+          "top_k": 1,
+          "expert_usage": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 1.0,
+          "normalized_entropy": -0.0,
+          "normalized_gini": 1.0,
+          "dead_experts": [
+            1,
+            2
+          ],
+          "tensor_shape": [
+            1,
+            128,
+            10,
+            10
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.01
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "aux_loss",
+            "dispatch",
+            "expert_usage",
+            "finite_diagnostics",
+            "mean_router_probs",
+            "num_experts",
+            "scene_aware",
+            "scene_aware_applied",
+            "scene_bias",
+            "scene_bypass_reason",
+            "scene_consistency_loss",
+            "scene_inference_mode",
+            "scene_stats",
+            "top_k"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": null,
+          "executed_experts": null
+        }
+      ],
+      "validation_errors": [],
+      "output_parity": {
+        "passed": true,
+        "rtol": 1e-05,
+        "atol": 1e-06
+      },
+      "hooks_removed": true,
+      "overhead": {
+        "method": "alternating_paired_eval_forward",
+        "warmup": 3,
+        "iterations": 20,
+        "baseline": {
+          "median_ms": 106.95544999998674,
+          "p95_ms": 112.11360000015702,
+          "min_ms": 99.09319999997024,
+          "max_ms": 117.77890000007574,
+          "samples_ms": [
+            109.4682999998895,
+            99.09319999997024,
+            106.60389999998188,
+            117.77890000007574,
+            110.5929999998807,
+            112.11360000015702,
+            102.38959999992403,
+            106.95629999986522,
+            112.08690000012211,
+            107.8635999999733,
+            106.95460000010826,
+            102.29549999985466,
+            104.014799999959,
+            110.0186000001031,
+            107.1618999999373,
+            102.72260000010647,
+            106.4845000000787,
+            110.9068999999181,
+            105.95669999997881,
+            104.56189999990784
+          ]
+        },
+        "instrumented": {
+          "median_ms": 108.20185000011406,
+          "p95_ms": 116.4678999998614,
+          "min_ms": 100.43210000003455,
+          "max_ms": 116.81829999997717,
+          "samples_ms": [
+            109.1291000000183,
+            104.07740000005106,
+            103.50389999985055,
+            116.81829999997717,
+            116.4678999998614,
+            115.47719999998662,
+            109.34479999991709,
+            108.4944000001542,
+            114.16740000004211,
+            100.43210000003455,
+            107.90930000007393,
+            104.73550000006071,
+            114.06479999982366,
+            111.8824999998651,
+            107.69920000007005,
+            105.0775999999587,
+            102.7260999999271,
+            106.2050000000454,
+            114.443700000038,
+            104.68059999993784
+          ]
+        },
+        "median_delta_ms": 1.2464000001273234,
+        "median_ratio": 1.011653450105885,
+        "scope": "temporary hooks + eval forward + CPU records + validation; excludes disk/plots",
+        "note": "Diagnostic observation cost; native snapshot publication remains on in both arms. Not P1 training."
+      }
+    },
+    {
+      "family": "latent",
+      "status": "passed",
+      "config": "ultralytics/cfg/models/26/yolo26-master-latent-n.yaml",
+      "initialization": "random",
+      "captured_routed_layers_total": 3,
+      "matching_layers": [
+        {
+          "layer_name": "model.23",
+          "module_type": "LatentMixture",
+          "family": "latent",
+          "num_experts": 4,
+          "top_k": 4,
+          "expert_usage": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 0.25,
+          "normalized_entropy": 1.0,
+          "normalized_gini": 0.0,
+          "dead_experts": [],
+          "tensor_shape": [
+            1,
+            64,
+            40,
+            40
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.001
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "active_experts_per_sample",
+            "aux_loss",
+            "balance_loss",
+            "batch_expert_union",
+            "configured_top_k",
+            "ddp_balance_synced",
+            "dispatch_policy",
+            "entropy",
+            "executed_experts",
+            "expert_usage",
+            "family",
+            "finite",
+            "identity_cold_start",
+            "inference_calibrated",
+            "inference_calibration_batches",
+            "inference_calibration_error",
+            "inference_calibration_tolerance",
+            "inference_top_k",
+            "kernel_calls",
+            "mean_active_experts_per_sample",
+            "mean_router_logits",
+            "mean_router_probs",
+            "noise_std",
+            "num_experts",
+            "residual_gain",
+            "residual_gain_magnitude",
+            "router_aux_gradient_enabled",
+            "router_init_std",
+            "router_output_head_magnitude",
+            "routing_axis",
+            "temperature",
+            "top_k",
+            "training_top_k",
+            "value_fusion_mode",
+            "value_fusion_weights",
+            "z_loss"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": "dense",
+          "executed_experts": 4
+        },
+        {
+          "layer_name": "model.24",
+          "module_type": "LatentMixture",
+          "family": "latent",
+          "num_experts": 4,
+          "top_k": 4,
+          "expert_usage": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 0.25,
+          "normalized_entropy": 1.0,
+          "normalized_gini": 0.0,
+          "dead_experts": [],
+          "tensor_shape": [
+            1,
+            128,
+            20,
+            20
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.001
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "active_experts_per_sample",
+            "aux_loss",
+            "balance_loss",
+            "batch_expert_union",
+            "configured_top_k",
+            "ddp_balance_synced",
+            "dispatch_policy",
+            "entropy",
+            "executed_experts",
+            "expert_usage",
+            "family",
+            "finite",
+            "identity_cold_start",
+            "inference_calibrated",
+            "inference_calibration_batches",
+            "inference_calibration_error",
+            "inference_calibration_tolerance",
+            "inference_top_k",
+            "kernel_calls",
+            "mean_active_experts_per_sample",
+            "mean_router_logits",
+            "mean_router_probs",
+            "noise_std",
+            "num_experts",
+            "residual_gain",
+            "residual_gain_magnitude",
+            "router_aux_gradient_enabled",
+            "router_init_std",
+            "router_output_head_magnitude",
+            "routing_axis",
+            "temperature",
+            "top_k",
+            "training_top_k",
+            "value_fusion_mode",
+            "value_fusion_weights",
+            "z_loss"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": "dense",
+          "executed_experts": 4
+        },
+        {
+          "layer_name": "model.25",
+          "module_type": "LatentMixture",
+          "family": "latent",
+          "num_experts": 4,
+          "top_k": 4,
+          "expert_usage": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "usage_semantics": "mean_mixture_probability",
+          "mean_router_probs": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "mean_topk_weight": null,
+          "mixing_weights_status": "available",
+          "dominant_share": 0.25,
+          "normalized_entropy": 1.0,
+          "normalized_gini": 0.0,
+          "dead_experts": [],
+          "tensor_shape": [
+            1,
+            256,
+            10,
+            10
+          ],
+          "aux_loss": {
+            "status": "configured_inactive_eval",
+            "observed": 0.0,
+            "balance_loss_coeff": 0.01,
+            "router_z_loss_coeff": 0.001
+          },
+          "source": "last_routing_snapshot",
+          "source_snapshot_keys": [
+            "active_experts_per_sample",
+            "aux_loss",
+            "balance_loss",
+            "batch_expert_union",
+            "configured_top_k",
+            "ddp_balance_synced",
+            "dispatch_policy",
+            "entropy",
+            "executed_experts",
+            "expert_usage",
+            "family",
+            "finite",
+            "identity_cold_start",
+            "inference_calibrated",
+            "inference_calibration_batches",
+            "inference_calibration_error",
+            "inference_calibration_tolerance",
+            "inference_top_k",
+            "kernel_calls",
+            "mean_active_experts_per_sample",
+            "mean_router_logits",
+            "mean_router_probs",
+            "noise_std",
+            "num_experts",
+            "residual_gain",
+            "residual_gain_magnitude",
+            "router_aux_gradient_enabled",
+            "router_init_std",
+            "router_output_head_magnitude",
+            "routing_axis",
+            "temperature",
+            "top_k",
+            "training_top_k",
+            "value_fusion_mode",
+            "value_fusion_weights",
+            "z_loss"
+          ],
+          "usage_scope": "rank_local",
+          "global_usage_available": false,
+          "dispatch_policy": "dense",
+          "executed_experts": 4
+        }
+      ],
+      "validation_errors": [],
+      "output_parity": {
+        "passed": true,
+        "rtol": 1e-05,
+        "atol": 1e-06
+      },
+      "hooks_removed": true,
+      "overhead": {
+        "method": "alternating_paired_eval_forward",
+        "warmup": 3,
+        "iterations": 20,
+        "baseline": {
+          "median_ms": 99.65374999990217,
+          "p95_ms": 105.77409999996235,
+          "min_ms": 91.685200000029,
+          "max_ms": 106.26049999996212,
+          "samples_ms": [
+            106.26049999996212,
+            99.71879999989142,
+            101.18680000005043,
+            100.0061000002006,
+            99.58869999991293,
+            91.81850000004488,
+            95.5020000001241,
+            100.34289999998691,
+            95.70760000019618,
+            105.77409999996235,
+            102.35130000000936,
+            100.15620000012859,
+            93.15670000000864,
+            97.44189999992159,
+            96.30310000011377,
+            91.685200000029,
+            94.59780000020146,
+            101.7959000000701,
+            101.77950000002056,
+            95.65469999984089
+          ]
+        },
+        "instrumented": {
+          "median_ms": 98.11139999999341,
+          "p95_ms": 104.3449999999666,
+          "min_ms": 92.19549999988885,
+          "max_ms": 112.20090000006167,
+          "samples_ms": [
+            102.69470000002912,
+            112.20090000006167,
+            104.00110000000495,
+            103.29049999995732,
+            104.3449999999666,
+            98.55029999994258,
+            92.19549999988885,
+            92.8659000001062,
+            100.57910000000447,
+            97.120299999915,
+            101.06360000008863,
+            98.65769999987606,
+            93.55229999982839,
+            95.27070000012827,
+            93.70999999987362,
+            95.10270000009768,
+            103.72490000008838,
+            97.67250000004424,
+            96.46900000007008,
+            92.90800000007948
+          ]
+        },
+        "median_delta_ms": -1.5423499999087653,
+        "median_ratio": 0.9845229105787762,
+        "scope": "temporary hooks + eval forward + CPU records + validation; excludes disk/plots",
+        "note": "Diagnostic observation cost; native snapshot publication remains on in both arms. Not P1 training."
+      }
+    }
+  ]
+}
