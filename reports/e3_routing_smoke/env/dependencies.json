@@ -1,0 +1,14 @@
+{
+  "python": "3.11.16",
+  "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "numpy": "2.4.6",
+    "matplotlib": "3.11.1",
+    "pillow": "12.3.0",
+    "pyyaml": "6.0.3",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "codespell": "2.4.3"
+  }
+}

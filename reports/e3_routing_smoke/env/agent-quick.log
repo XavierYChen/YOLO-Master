@@ -1,0 +1,33 @@
+{
+  "suite": "quick",
+  "total": 36,
+  "passed": 35,
+  "failed": 1,
+  "score": 0.972,
+  "slowest": [
+    {
+      "name": "multimodal_evaluate_stub_probe",
+      "elapsed_sec": 2.421
+    },
+    {
+      "name": "pipeline_profile_dry_run",
+      "elapsed_sec": 1.436
+    },
+    {
+      "name": "peft_compare_dry_run",
+      "elapsed_sec": 0.285
+    },
+    {
+      "name": "multimodal_open_world_stub_probe",
+      "elapsed_sec": 0.276
+    },
+    {
+      "name": "multimodal_infer_dry_run",
+      "elapsed_sec": 0.259
+    }
+  ],
+  "recommendations": [
+    "Patch the dry-run plan output before touching real execution paths.",
+    "Refactor pipeline orchestration to surface stage-level errors and stage manifests."
+  ]
+}

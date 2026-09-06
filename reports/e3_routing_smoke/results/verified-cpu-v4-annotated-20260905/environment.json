@@ -1,0 +1,17 @@
+{
+  "python": "3.11.16",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "cuda_available": true,
+  "device": "cpu",
+  "device_name": null,
+  "git_commit": "dab47c5e6e3d680c8d62576cf291e66431758873",
+  "source_sha256": "66b6483a4efd21e43f186b1cfd4c87babe6adc07f1986c0570412eb811e1f81d",
+  "official_base_commit": "246e79cfe418cfd90f4738bace56b02245dc38f8",
+  "moe_snapshot_interval": 1,
+  "openblas_num_threads": "1",
+  "omp_num_threads": "1",
+  "git_dirty": true
+}
+
