@@ -11,7 +11,8 @@ COCO8 验证集首图，seed=0，320，batch=1，FP32，CPU；随机初始化，
 
 ### 3. 已完成证据
 三族 13 层结构化记录和静态图；输出一致性通过，hooks 清理通过；15 项回归测试通过。
-CPU off/on 中位数 ms：MoE 166.301/165.188，MoT 185.487/193.330，Latent 134.929/131.722。
+CPU off/on 中位数 ms：MoE 84.013/88.987，MoT 101.805/100.978，Latent 91.539/89.231。
+静态图直接标出 expert usage、normalized entropy 和 normalized Gini 三位小数，并明确每族指标语义。
 保留原始计时、日志、配置、图及哈希；GPU 和官方 quick 失败如实记录。
 
 ### 4. 结论与不确定性
@@ -34,9 +35,10 @@ CPU 真实 COCO8 三族运行通过，13 层；15 项 pytest 通过；新增 Pyt
 
 ### 消融数据
 固定 seed=0、随机初始化、FP32、320、batch=1，3 warmup +20 对 AB/BA 推理前向。
-MoE -0.67%、MoT +4.23%、Latent -2.38%；短测负数是噪声，不声称加速。原始样本见 routing_snapshot.json。
+MoE +5.92%、MoT -0.81%、Latent -2.52%；短测负数是噪声，不声称加速。原始样本见 routing_snapshot.json。
 这不是训练 benchmark，不声称达到 P1；多 seed 与置信区间留待正式训练对照。
 
 ### 已知局限
 仅锁定三份 YAML；MoA/MoLoRA unsupported；MoE eval aux 未发布；未实现实时面板、token overlay、视频、训练减速验收。
 随机初始化单图只能证明链路。GPU/DLL 环境故障和全仓检查失败记录在 VALIDATION.md。
+

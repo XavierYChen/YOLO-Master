@@ -1,0 +1,2 @@
+python scripts/e3_routing_smoke.py --data coco8.yaml --device cpu --imgsz 320 --seed 0 --warmup 3 --iterations 20 --image D:\AI\datasets\coco8\images\val\000000000036.jpg --families moe mot latent
+

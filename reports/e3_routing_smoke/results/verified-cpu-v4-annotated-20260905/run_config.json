@@ -1,0 +1,17 @@
+{
+  "config": "reports\\e3_routing_smoke\\configs\\smoke.yaml",
+  "data": "coco8.yaml",
+  "image": "D:\\AI\\datasets\\coco8\\images\\val\\000000000036.jpg",
+  "output": "D:\\AI\\YOLO-Master\\reports\\e3_routing_smoke\\results\\verified-cpu-v4-annotated-20260905",
+  "imgsz": 320,
+  "device": "cpu",
+  "warmup": 3,
+  "iterations": 20,
+  "seed": 0,
+  "families": [
+    "moe",
+    "mot",
+    "latent"
+  ]
+}
+

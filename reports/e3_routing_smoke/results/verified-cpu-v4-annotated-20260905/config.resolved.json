@@ -1,0 +1,15 @@
+{
+  "moe": {
+    "path": "ultralytics/cfg/models/26/yolo26-master-n.yaml",
+    "sha256": "be403b10940030d6eb960f3e82cc40b1e142ab28bb8e16010f0ba1d95cb60306"
+  },
+  "mot": {
+    "path": "ultralytics/cfg/models/26/yolo26-master-mot-n.yaml",
+    "sha256": "f327bb95d9cdf2dc1d81da060ad663a4e9bc38ff1d3ae13db58d36d761452614"
+  },
+  "latent": {
+    "path": "ultralytics/cfg/models/26/yolo26-master-latent-n.yaml",
+    "sha256": "052ff10474b20e422022bd463cf8dc7385158820ec75eb8d84ae23c3455f7167"
+  }
+}
+

@@ -441,7 +441,46 @@ def _environment(torch: Any, device: Any) -> dict[str, Any]:
     }
 
 
-def _save_figure(profiles: list[dict[str, Any]], output: Path) -> None:
+def _plot_semantics(family: str) -> str:
+    """Return a short, accurate label for the plotted usage vector."""
+    return "Top-k selection share" if family == "moe" else "Mean mixture probability"
+
+
+def _annotate_heatmap(axis: Any, matrix: Any, vmax: float) -> None:
+    """Write compact values into valid heatmap cells with readable contrast."""
+    import numpy as np
+
+    fontsize = 6 if matrix.shape[1] > 8 else 8
+    for row, column in np.ndindex(matrix.shape):
+        value = matrix[row, column]
+        if np.isnan(value):
+            continue
+        axis.text(
+            column,
+            row,
+            f"{value:.3f}",
+            ha="center",
+            va="center",
+            fontsize=fontsize,
+            color="white" if value >= vmax * 0.55 else "#172033",
+        )
+
+
+def _annotate_bars(axis: Any, bars: Any) -> None:
+    """Label normalized metric bars without hiding the 0-1 scale."""
+    for bar in bars:
+        value = float(bar.get_width())
+        axis.text(
+            min(value + 0.012, 1.035),
+            bar.get_y() + bar.get_height() / 2,
+            f"{value:.3f}",
+            va="center",
+            ha="left",
+            fontsize=8,
+        )
+
+
+def _save_figure(profiles: list[dict[str, Any]], output: Path, *, seed: int, image_name: str) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -460,28 +499,35 @@ def _save_figure(profiles: list[dict[str, Any]], output: Path) -> None:
         matrix = np.full((len(layers), max_experts), np.nan)
         for index, layer in enumerate(layers):
             matrix[index, : layer["num_experts"]] = layer["expert_usage"]
+        vmax = max(1.0 / max_experts, np.nanmax(matrix))
         image = left.imshow(
             matrix,
             vmin=0.0,
-            vmax=max(1.0 / max_experts, np.nanmax(matrix)),
+            vmax=vmax,
             cmap="Blues",
             aspect="auto",
         )
-        left.set_title(f"{profile['family'].upper()} expert load (random init)")
+        left.set_title(f"{profile['family'].upper()} — {_plot_semantics(profile['family'])}")
         left.set_xlabel("Expert index")
         left.set_ylabel("Routed layer")
         left.set_yticks(range(len(layers)), [layer["layer_name"] for layer in layers])
         left.set_xticks(range(max_experts))
+        _annotate_heatmap(left, matrix, vmax)
         figure.colorbar(image, ax=left, fraction=0.025, pad=0.02)
         positions = np.arange(len(layers))
-        right.barh(positions - 0.18, [layer["normalized_entropy"] for layer in layers], 0.36, label="Entropy")
-        right.barh(positions + 0.18, [layer["normalized_gini"] for layer in layers], 0.36, label="Gini")
+        entropy_bars = right.barh(
+            positions - 0.18, [layer["normalized_entropy"] for layer in layers], 0.36, label="Entropy"
+        )
+        gini_bars = right.barh(positions + 0.18, [layer["normalized_gini"] for layer in layers], 0.36, label="Gini")
         right.set_yticks(positions, [layer["layer_name"] for layer in layers])
         right.invert_yaxis()
-        right.set_xlim(0.0, 1.0)
-        right.set_title("Routing balance diagnostics")
+        right.set_xlim(0.0, 1.08)
+        right.set_title("Normalized routing balance (0–1)")
+        _annotate_bars(right, entropy_bars)
+        _annotate_bars(right, gini_bars)
         right.legend()
-    figure.suptitle("E3 routing smoke: " + " / ".join(p["family"] for p in profiles), fontsize=16)
+    families = " / ".join(p["family"].upper() for p in profiles)
+    figure.suptitle(f"E3 routing smoke: {families}\nCOCO8 {image_name} • random init • seed {seed}", fontsize=15)
     figure.tight_layout()
     figure.savefig(output / "routing_snapshot.png", dpi=160, bbox_inches="tight")
     plt.close(figure)
@@ -495,13 +541,16 @@ def _save_figure(profiles: list[dict[str, Any]], output: Path) -> None:
         for index, layer in enumerate(layers):
             matrix[index, : layer["num_experts"]] = layer["expert_usage"]
         family_figure, axis = plt.subplots(figsize=(max(7.0, columns * 0.8), max(3.5, len(layers) * 0.5 + 2)))
-        family_image = axis.imshow(matrix, vmin=0.0, vmax=1.0, cmap="viridis", aspect="auto")
+        vmax = max(1.0 / columns, np.nanmax(matrix))
+        family_image = axis.imshow(matrix, vmin=0.0, vmax=vmax, cmap="viridis", aspect="auto")
         axis.set_xticks(range(columns), [f"E{index}" for index in range(columns)])
         axis.set_yticks(range(len(layers)), [layer["layer_name"] for layer in layers])
         axis.set_xlabel("Expert")
         axis.set_ylabel("Routed layer")
-        axis.set_title(f"E3 routing snapshot - {profile['family'].upper()} expert usage")
-        family_figure.colorbar(family_image, ax=axis, label=layers[0]["usage_semantics"])
+        semantics = _plot_semantics(profile["family"])
+        axis.set_title(f"E3 {profile['family'].upper()} — {semantics}\nCOCO8 {image_name} • random init • seed {seed}")
+        _annotate_heatmap(axis, matrix, vmax)
+        family_figure.colorbar(family_image, ax=axis, label=semantics)
         family_figure.tight_layout()
         family_figure.savefig(output / f"{profile['family']}_expert_usage.png", dpi=160, bbox_inches="tight")
         plt.close(family_figure)
@@ -664,7 +713,7 @@ def run(args) -> int:
         {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
     )
     (args.output / "command.txt").write_text(command + "\n", encoding="utf-8")
-    _save_figure(profiles, args.output)
+    _save_figure(profiles, args.output, seed=args.seed, image_name=args.image.name)
     print(f"Result: {summary['status']} | evidence={args.output}", flush=True)
     return 0 if passed else 1
 
@@ -714,3 +763,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

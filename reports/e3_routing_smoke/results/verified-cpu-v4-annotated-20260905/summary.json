@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "families_requested": [
+    "moe",
+    "mot",
+    "latent"
+  ],
+  "families_passed": [
+    "moe",
+    "mot",
+    "latent"
+  ],
+  "scope": "admission smoke and three-family prototype; not full P0/P1/P2 acceptance",
+  "unsupported_families": [
+    "moa",
+    "molora"
+  ],
+  "admission_rule": "all requested families build, expose matching routes, and emit valid normalized usage",
+  "warnings": [
+    "Random initialization is not evidence of model accuracy or trained expert specialization.",
+    "Overhead is paired eval observation cost, not a training slowdown measurement."
+  ]
+}
+

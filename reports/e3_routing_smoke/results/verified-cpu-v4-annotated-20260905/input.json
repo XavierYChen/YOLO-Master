@@ -1,0 +1,15 @@
+{
+  "image": "000000000036.jpg",
+  "dataset": {
+    "config": "coco8.yaml",
+    "root_name": "coco8",
+    "train": "images/train",
+    "val": "images/val"
+  },
+  "sha256": "4c28394898302bef227834d63498a0fc54e4295f11c590c8a8ebcba51347bc03",
+  "imgsz": 320,
+  "batch_size": 1,
+  "dtype": "float32",
+  "preprocess": "LetterBox square with padding, BGR to RGB, CHW, divide by 255"
+}
+

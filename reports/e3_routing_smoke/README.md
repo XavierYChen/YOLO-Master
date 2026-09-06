@@ -7,6 +7,17 @@ Owner：@XavierYChen。腾讯基线：`246e79cfe418cfd90f4738bace56b02245dc38f8`
 这是准入 smoke 与 P0 原型，不能把 PASS 当作 P1 训练减速 <10% 或 P2 完成。
 正式任务书的准入条目并未限定只测 MoT。别人采用单族是执行选择，三族图不必与别人相同。
 
+## 最新实测图
+
+![MoE、MoT、Latent 路由总览，格内和条形旁标出三位小数](results/verified-cpu-v4-annotated-20260905/routing_snapshot.png)
+
+分族高清图：[MoE](results/verified-cpu-v4-annotated-20260905/moe_expert_usage.png) ·
+[MoT](results/verified-cpu-v4-annotated-20260905/mot_expert_usage.png) ·
+[Latent](results/verified-cpu-v4-annotated-20260905/latent_expert_usage.png)
+
+图中 `0.000` 是本次记录经三位小数显示后的数值；完整精度保留在 JSON/JSONL。
+颜色范围按每个族实际范围设置，比较颜色深浅时只应在同一个面板及其色条内进行。
+
 ## 你这台电脑怎么跑
 打开 **Anaconda Prompt**，复制以下命令（每行执行一次）：
 
@@ -17,7 +28,7 @@ reports\e3_routing_smoke\run_smoke.cmd
 ```
 
 默认 CPU、320、seed=0、3 次预热和 20 对交替测量。本机调试时出现过 CUDA 分配失败及 Windows 分页文件不足，因此 CPU 是当前默认值。
-每次自动创建新的 `reports/e3_routing_smoke/results/run-时间/`，终端最后打印实际路径。
+每次自动创建新的 `reports/e3_routing_smoke/results/run-时间/`，终端最后打印实际路径。仓库中已提交的最新版完整证据是 `results/verified-cpu-v4-annotated-20260905/`，其中四张 PNG 都带三位小数标注。
 不要再拿旧 `results/summary.json` 判断本次结果。
 
 只测 MoT（便于理解单族结果）：
@@ -60,7 +71,7 @@ python scripts/e3_routing_smoke.py --config reports/e3_routing_smoke/configs/smo
 ## 跑完看什么、发什么
 1. 终端三个族应各打印 `passed`，进程退出码为 0。
 2. 新运行目录 `summary.json` 应为 `passed`。
-3. 看 `routing_snapshot.png` 和三个族的图。MoE 是选择份额；MoT/Latent 是平均概率，不能横向当作同一种命中率。
+3. 看 `routing_snapshot.png` 和三个族的图。最新版图在每个有效格、Entropy 和 Gini 条形旁直接标出三位小数，并在标题写明数据语义、输入图和 seed。MoE 是选择份额；MoT/Latent 是平均概率，不能横向当作同一种命中率。
 4. 把**整个新运行目录打包**发回来即可。至少保留 `full.log`、`summary.json`、`routing_snapshot.jsonl`、`routing_snapshot.json`、`environment.json`、`run_config.json`、`input.json`、`config.resolved.json`、`command.txt` 和图。
 5. 失败也发该目录，不只截最后一行。启动参数错误或目录已存在等情况也请复制终端报错。
 
@@ -84,3 +95,4 @@ MoE 最终 top-k hook，MoT/Latent 原生 snapshot hook → 严格校验 → JSO
 旧三族脚本可能在路由内部卷积分数上做 softmax，把它标成专家负载；本版使用最终 top-k 输出或原生 snapshot，并明确语义。
 Workbuddy 方案的目录、JSONL 思路值得参考，但其中随机图片 fallback、未应用 seed、未移动模型设备、缺少完整日志及过早生成 manifest 等问题没有照搬。
 不追求与别人像素一致，也不把旧脚本日志追溯改写成本版证据。
+
