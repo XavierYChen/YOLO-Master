@@ -331,6 +331,15 @@ def test_capture_routing_reconstructs_optimized_moe_sparse_topk_probabilities():
     assert torch.count_nonzero(heatmap.probabilities, dim=1).tolist() == [2, 2]
 
 
+def test_snapshot_family_uses_nearest_routed_parent_for_leaf_router():
+    model = nn.Sequential(OptimizedMOE(16, 16, num_experts=4, top_k=2))
+    interpreter = RoutingInterpreter(model)
+    heatmaps = interpreter.capture_routing(torch.randn(2, 16, 4, 5))
+    record = interpreter.routing_snapshot_records(heatmaps=heatmaps)[0]
+
+    assert record["family"] == "moe"
+
+
 def test_visualize_routing_writes_png_and_json_safe_summary(tmp_path):
     interpreter = RoutingInterpreter(ToyModel())
     batch = torch.linspace(-1.0, 1.0, 20).reshape(1, 1, 4, 5)
